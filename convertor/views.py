@@ -58,7 +58,7 @@ def imageconvertor(request):
                 file2=request.FILES["file"]
                 document=ImageUpload.objects.create(File=file2)
                 document.save()
-                imgPath='/media/'+document.File.url
+                imgPath=document.File.url
                 img = Image.open(imgPath).convert("RGB")
                 img.save(x+'newData.png')
                 document1=ImageUpload.objects.create(File=(x+'newData.png'))
