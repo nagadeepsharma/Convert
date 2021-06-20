@@ -55,12 +55,10 @@ def imageconvertor(request):
         if request.POST.get("jpg2png"):
             try:
                 print("Converting JPG TO PNG")
-                for i in os.listdir(x):
-                    os.remove(x+i)
                 file2=request.FILES["file"]
                 document=ImageUpload.objects.create(File=file2)
                 document.save()
-                imgPath=str(BASE_DIR)+"\\"+str(document.File.url)
+                imgPath=document.File.url
                 img = Image.open(imgPath).convert("RGB")
                 img.save(x+'newData.png')
                 document1=ImageUpload.objects.create(File=(x+'newData.png'))
