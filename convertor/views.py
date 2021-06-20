@@ -3,10 +3,10 @@ from convertor.models import filesUpload
 from convertor.models import ImageUpload
 from pathlib import Path
 import os
-import win32com.client
-import pythoncom
-import comtypes
-import comtypes.client
+#import win32com.client
+#import pythoncom
+#import comtypes
+#import comtypes.client
 from PIL import Image
 from docx2pdf import convert
 import datetime
@@ -280,39 +280,39 @@ def fileconvertor(request):
 
 
 # Function used for converting PPT TO PDF
-def PPT_to_PDF(inputFileName, outputFileName):
-    pythoncom.CoInitialize()
-    powerpoint = win32com.client.Dispatch("Powerpoint.Application")
-    deck = powerpoint.Presentations.Open(inputFileName)
-    deck.SaveAs(outputFileName,32)
-    deck.Close()
-    powerpoint.Quit()
+# def PPT_to_PDF(inputFileName, outputFileName):
+#     pythoncom.CoInitialize()
+#     powerpoint = win32com.client.Dispatch("Powerpoint.Application")
+#     deck = powerpoint.Presentations.Open(inputFileName)
+#     deck.SaveAs(outputFileName,32)
+#     deck.Close()
+#     powerpoint.Quit()
 
 
-#Function used for converting PDF TO DOC
-def PDF_to_DOC(infile_path, outfile_path):
-    pythoncom.CoInitialize()
-    word = win32com.client.Dispatch("Word.Application")
-    wb = word.Documents.Open(infile_path, False, False, False)
-    wb.SaveAs2(outfile_path, 16)
-    wb.Close()
-    word.Quit()
+# #Function used for converting PDF TO DOC
+# def PDF_to_DOC(infile_path, outfile_path):
+#     pythoncom.CoInitialize()
+#     word = win32com.client.Dispatch("Word.Application")
+#     wb = word.Documents.Open(infile_path, False, False, False)
+#     wb.SaveAs2(outfile_path, 16)
+#     wb.Close()
+#     word.Quit()
 
 
-#Function used for converting DOC to PDF
-def DOC_to_PDF(infile_path,outfile_path):
-    pythoncom.CoInitialize()
-    convert(infile_path,outfile_path)
+# #Function used for converting DOC to PDF
+# def DOC_to_PDF(infile_path,outfile_path):
+#     pythoncom.CoInitialize()
+#     convert(infile_path,outfile_path)
     
 
 
-#Function used for converting EXCEL to PDF
-def XLS_to_PDF(infile_path,outfile_path):
-    pythoncom.CoInitialize()
-    excel = win32com.client.Dispatch("Excel.Application")
-    sheets = excel.Workbooks.Open(infile_path)
-    work_sheets = sheets.Worksheets[0]
-    work_sheets.ExportAsFixedFormat(0,outfile_path)
+# #Function used for converting EXCEL to PDF
+# def XLS_to_PDF(infile_path,outfile_path):
+#     pythoncom.CoInitialize()
+#     excel = win32com.client.Dispatch("Excel.Application")
+#     sheets = excel.Workbooks.Open(infile_path)
+#     work_sheets = sheets.Worksheets[0]
+#     work_sheets.ExportAsFixedFormat(0,outfile_path)
 
 
 #Function used for converting JPG TO PDF
