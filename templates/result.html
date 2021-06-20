@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Download</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="{% static 'index.css' %}">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'fileconvertor.css' %}">
+</head>
+
+<body>
+  <!-- header starting -->
+  <header>
+           <img src="{% static 'logo.png' %}" height="300px" width="250px" class=float-left alt="logo">
+    <div class="jumbotron jumbotron-fluid bg-dark text-white class=float-right"
+      style="background-image: url(https://webneel.com/wallpaper/sites/default/files/images/08-2014/1-black-wallpaper-pattern.jpg); background-size: 100%;">
+
+      <h1><b>VCE Tool Kit</b></h1>
+      <h3>Convert Your Files Easy And Fast</h3><br>
+      <!-- nav bar-->
+      <script src="{% static 'nav.js' %}"></script>
+      <nav id="navbar_top" class="navbar navbar-expand-lg  navbar-dark"
+        style="background-image: url(https://webneel.com/wallpaper/sites/default/files/images/08-2014/1-black-wallpaper-pattern.jpg);">
+        <a class="navbar-brand" href="/"><b>Home</b></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link text-light" href="/imageconvertor"><b>Image Convertor</b></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light" href="/fileconvertor"><b>File Convertor</b></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light" href="/bg"><b>Background Remover</b></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light" href="/about"><b>About Us</b></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <!--nav bar ending-->
+    </div>
+  </header><br>
+  <!-- header ending -->
+  <div>
+    <div class="container">
+
+    </div><br><br><br>
+    <div class="container">
+    <div class="jumbotron" style="color:black ;background:linear-gradient(57deg,#d3d3d3,#48dbfb);border-radius:20px;border: 12px solid white;">
+       <center> <h1><b>Download Here</b></h1> <br>
+        <a href="{{Dlink}}" download><button class="btn btn-primary btn-lg active bg-dark" >Download</button></a>
+        </a>
+        </center>
+      </div>
+</div><br><br><br>
+<footer>
+<div><br>
+  <center><h6><p style="color:white;"> Copyright &#169; 2021 - Mini Tool Kit. All Rights Reserved</p></p></h6></center>
+</div><br>
+</footer>
+</body>
+
+</html>

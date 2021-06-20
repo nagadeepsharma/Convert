@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>VCE Tool Kit</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="{% static 'index.css' %}">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+  <!-- header starting -->
+  <header>
+    <img src="{% static 'logo.png' %}" height="300px" width="250px" class=float-left alt="logo">
+  <div class="jumbotron jumbotron-fluid bg-dark text-white class=float-right" style="background-image: url(https://webneel.com/wallpaper/sites/default/files/images/08-2014/1-black-wallpaper-pattern.jpg); background-size: 100%;">
+  <h1><b>VCE Tool Kit</b></h1>
+  <h3>Convert Your Files Easy And Fast</h3><br>
+  <!-- nav bar-->
+  <script src="{% static 'nav.js' %}"></script>
+<nav id="navbar_top" class="navbar navbar-expand-lg  navbar-dark" style="background-image: url(https://webneel.com/wallpaper/sites/default/files/images/08-2014/1-black-wallpaper-pattern.jpg);">
+  <a class="navbar-brand" href="/"><b>Home</b></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link text-light" href="/imageconvertor"><b>Image Convertor</b></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" href="/fileconvertor"><b>File Convertor</b></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" href="/bg"><b>Background Remover</b></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" href="/about"><b>About Us</b></a>
+      </li>   
+    </ul>
+  </div>
+</nav>
+<!--nav bar ending-->
+</div>
+</header><br><br>
+<!-- header ending -->
+ <!--background-->
+<div>
+<div class="container">
+            <div class="card-deck">
+                   <div class="card text-center">
+                    <div class="card-block">
+                    <img src="{% static 'backimg.png' %}" height="125%" width="125%" alt="img"> 
+                    </div>
+                    </div>
+
+                    <div class="card text-center">
+                    <div class="card-block">
+                    <p id="content"><b>Searching For Online Convertor!!!</b></p>
+                    <p id="content" style="color:orange"><b>Here It Is!!</b></p>
+                    </div>
+                    </div>
+             </div>
+</div>
+</div>
+
+<!-- end background-->
+<!-- info-->
+<div id="box">
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <p><i style="padding-left:45px"class="fas fa-file fa-2x"></i></p>
+      <h5>High Quality</h5>
+      <p>Produces High Quality<br> Images with precision<br> and fast</p>
+        </div>
+    <div class="col-sm">
+      <p><i style="padding-left:45px" class="fas fa-question fa-2x"></i></p>
+      <h5>How To Use</h5>
+      <p>It's So Simple.Just Upload<br> Your Files By Clicking<br> Upload Button And Wait <br>for The Result</p>
+    </div>
+    <div class="col-sm">
+      <p><i style="padding-left:45px" class="fas fa-cloud-upload-alt fa-2x"></i></p>
+       <h5 style="padding-left:15px">Easy To Acess</h5>
+       <p>You Can Upload Files Using Electronic Device But Ensure<br> You Have Internet Connectivity</p>
+    </div>
+    <div class="col-sm">
+      <p><i style="padding-left:45px" class="fas fa-download fa-2x"></i></p>
+       <h5 style="padding-left:15px">No Installation</h5>
+       <p>Works For Free and User Doesn't Require To Install Software</p>
+    </div>
+  </div>
+</div>
+</div>
+<!--info ending-->
+<!-- footer-->
+<footer>
+<div><br>
+  <center><h6><p style="color:white;"> Copyright &#169; 2021 - Mini Tool Kit. All Rights Reserved</p></p></h6></center>
+</div><br>
+</footer>
+</body>
+</html>
