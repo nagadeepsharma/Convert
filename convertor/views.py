@@ -1,14 +1,14 @@
 from django.shortcuts import render
 # from convertor.models import filesUpload
 from convertor.models import ImageUpload
-from pathlib import Path
+# from pathlib import Path
 import os
 #import win32com.client
 # import pythoncom
 # import comtypes
 # import comtypes.client
 from PIL import Image
-from docx2pdf import convert
+# from docx2pdf import convert
 # import datetime
 import numpy as np
 import cv2 as cv
