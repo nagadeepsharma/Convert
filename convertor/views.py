@@ -14,6 +14,11 @@ import numpy as np
 import cv2 as cv
 from matplotlib import pyplot as plt
 import sys
+from io import StringIO
+from PIL import Image
+from PIL import ImageDraw
+from django.core.files.uploadedfile import InMemoryUploadedFile
+from django.core.files.base import ContentFile
 
 
 
@@ -48,7 +53,6 @@ def backgroundremover(request):
 
 
 def imageconvertor(request):
-    x=str(BASE_DIR)+"\\media\\images\\"
     if request.method=="POST":
         #Converting JPG TO PNG
 
@@ -56,39 +60,50 @@ def imageconvertor(request):
             try:
                 print("Converting JPG TO PNG")
                 file2=request.FILES["file"]
-                document=ImageUpload.objects.create(File=file2)
-                document.save()
-                print("Converting JPG TO PNG")
-                imgPath=document.File.url
-                print(imgPath)
-                img = Image.open(document.File).convert("RGB")
-                print("Converting JPG TO PNG")
-                print(img)
-                img.save(x+'newData.png')
-                document1=ImageUpload.objects.create(File=(x+'newData.png'))
-                document1.save()
-                print('The image conversion from JPG to PNG is successful')
-                return render(request,"result.html",{"Dlink":document1.File.url})
-            except:
-                print("wrong")
-                return render(request,"errorpage.html")
+                file_content = ContentFile(file2.read())
+                new_file = ImageUpload() 
+                new_file.File.save('converted'+'.png', file_content)
+                new_file.save()
 
-        #Converting JPG to WEBP
-        if request.POST.get("jpg2webp"):
-            try:
-                print("Converting JPG TO WEBP")
-                for i in os.listdir(x):
-                    os.remove(x+i)
-                file2=request.FILES["file"]
-                document=ImageUpload.objects.create(File=file2)
-                document.save()
-                imgPath=str(BASE_DIR)+"\\"+str(document.File.url)
-                img = Image.open(imgPath).convert("RGB")
-                img.save(x+'newData.webp')
-                document1=ImageUpload.objects.create(File=(x+'newData.webp'))
-                document1.save()
-                print('The image conversion from JPG to WEBP is successful')
-                return render(request,"result.html",{"Dlink":document1.File.url})
+
+        #         document=ImageUpload.objects.create(File=file2)
+        #         document.save()
+
+        #         file_content = ContentFile(document.File.read())
+        #         document.File.close()
+        #         img = Image.open(file_content)
+        #         newimg=img.convert("RGB")
+        #         buffer = StringIO()
+        #         print("hello")
+        #         print(newimg)
+        #         newimg.save(buffer, format="PNG")
+        #         print("hello")
+        #         print("hello")
+        #         image_file = InMemoryUploadedFile(buffer, None, "temp", 'image/png', buffer.len, None)
+        #         print("hello")
+        #         document.File.save("temp",image_file)
+        #         print('The image conversion from JPG to PNG is successful')
+        #         return render(request,"result.html",{"Dlink":document.File.url})
+        #     except:
+        #         print("wrong")
+        #         return render(request,"errorpage.html")
+
+        # #Converting JPG to WEBP
+        # if request.POST.get("jpg2webp"):
+        #     try:
+        #         print("Converting JPG TO WEBP")
+        #         for i in os.listdir(x):
+        #             os.remove(x+i)
+        #         file2=request.FILES["file"]
+        #         document=ImageUpload.objects.create(File=file2)
+        #         document.save()
+        #         imgPath=str(BASE_DIR)+"\\"+str(document.File.url)
+        #         img = Image.open(imgPath).convert("RGB")
+        #         img.save(x+'newData.webp')
+        #         document1=ImageUpload.objects.create(File=(x+'newData.webp'))
+        #         document1.save()
+        #         print('The image conversion from JPG to WEBP is successful')
+                return render(request,"result.html",{"Dlink":new_file.File.url})
             except:
                 return render(request,"errorpage.html")
 
@@ -96,18 +111,23 @@ def imageconvertor(request):
         if request.POST.get("png2jpg"):
             try:
                 print("Converting PNG TO JPG")
-                for i in os.listdir(x):
-                    os.remove(x+i)
                 file2=request.FILES["file"]
-                document=ImageUpload.objects.create(File=file2)
-                document.save()
-                imgPath=str(BASE_DIR)+"\\"+str(document.File.url)
-                img = Image.open(imgPath).convert("RGB")
-                img.save(x+'newData.jpg')
-                document1=ImageUpload.objects.create(File=(x+'newData.jpg'))
-                document1.save()
-                print('The image conversion from PNG TO JPG is successful')
-                return render(request,"result.html",{"Dlink":document1.File.url})
+                file_content = ContentFile(file2.read())
+                new_file = ImageUpload() 
+                new_file.File.save('converted'+'.jpg', file_content)
+                new_file.save()
+                # for i in os.listdir(x):
+                #     os.remove(x+i)
+                # file2=request.FILES["file"]
+                # document=ImageUpload.objects.create(File=file2)
+                # document.save()
+                # imgPath=str(BASE_DIR)+"\\"+str(document.File.url)
+                # img = Image.open(imgPath).convert("RGB")
+                # img.save(x+'newData.jpg')
+                # document1=ImageUpload.objects.create(File=(x+'newData.jpg'))
+                # document1.save()
+                # print('The image conversion from PNG TO JPG is successful')
+                return render(request,"result.html",{"Dlink":new_file.File.url})
             except:
                 return render(request,"errorpage.html")
 
@@ -116,18 +136,23 @@ def imageconvertor(request):
         if request.POST.get("png2webp"):
             try:
                 print("Converting PNG TO WEBP")
-                for i in os.listdir(x):
-                    os.remove(x+i)
                 file2=request.FILES["file"]
-                document=ImageUpload.objects.create(File=file2)
-                document.save()
-                imgPath=str(BASE_DIR)+"\\"+str(document.File.url)
-                img = Image.open(imgPath).convert("RGB")
-                img.save(x+'newData.webp')
-                document1=ImageUpload.objects.create(File=(x+'newData.webp'))
-                document1.save()
-                print('The image conversion from PNG TO WEBP is successful')
-                return render(request,"result.html",{"Dlink":document1.File.url})
+                file_content = ContentFile(file2.read())
+                new_file = ImageUpload() 
+                new_file.File.save('converted'+'.webp', file_content)
+                new_file.save()
+                # for i in os.listdir(x):
+                #     os.remove(x+i)
+                # file2=request.FILES["file"]
+                # document=ImageUpload.objects.create(File=file2)
+                # document.save()
+                # imgPath=str(BASE_DIR)+"\\"+str(document.File.url)
+                # img = Image.open(imgPath).convert("RGB")
+                # img.save(x+'newData.webp')
+                # document1=ImageUpload.objects.create(File=(x+'newData.webp'))
+                # document1.save()
+                # print('The image conversion from PNG TO WEBP is successful')
+                return render(request,"result.html",{"Dlink":new_file.File.url})
             except:
                 return render(request,"errorpage.html")
 
@@ -135,18 +160,23 @@ def imageconvertor(request):
         if request.POST.get("webp2jpg"):
             try:
                 print("Converting WEBP TO JPG")
-                for i in os.listdir(x):
-                    os.remove(x+i)
                 file2=request.FILES["file"]
-                document=ImageUpload.objects.create(File=file2)
-                document.save()
-                imgPath=str(BASE_DIR)+"\\"+str(document.File.url)
-                img = Image.open(imgPath).convert("RGB")
-                img.save(x+'newData.jpg')
-                document1=ImageUpload.objects.create(File=(x+'newData.jpg'))
-                document1.save()
-                print('The image conversion from PNG TO WEBP is successful')
-                return render(request,"result.html",{"Dlink":document1.File.url})
+                file_content = ContentFile(file2.read())
+                new_file = ImageUpload() 
+                new_file.File.save('converted'+'.jpg', file_content)
+                new_file.save()
+                # for i in os.listdir(x):
+                #     os.remove(x+i)
+                # file2=request.FILES["file"]
+                # document=ImageUpload.objects.create(File=file2)
+                # document.save()
+                # imgPath=str(BASE_DIR)+"\\"+str(document.File.url)
+                # img = Image.open(imgPath).convert("RGB")
+                # img.save(x+'newData.jpg')
+                # document1=ImageUpload.objects.create(File=(x+'newData.jpg'))
+                # document1.save()
+                # print('The image conversion from PNG TO WEBP is successful')
+                return render(request,"result.html",{"Dlink":new_file.File.url})
             except:
                 return render(request,"errorpage.html")
 
@@ -154,18 +184,23 @@ def imageconvertor(request):
         if request.POST.get("webp2png"):
             try:
                 print("Converting WEBP TP PNG")
-                for i in os.listdir(x):
-                    os.remove(x+i)
                 file2=request.FILES["file"]
-                document=ImageUpload.objects.create(File=file2)
-                document.save()
-                imgPath=str(BASE_DIR)+"\\"+str(document.File.url)
-                img = Image.open(imgPath).convert("RGB")
-                img.save(x+'newData.png')
-                document1=ImageUpload.objects.create(File=(x+'newData.png'))
-                document1.save()
-                print('The image conversion from PNG TO WEBP is successful')
-                return render(request,"result.html",{"Dlink":document1.File.url})
+                file_content = ContentFile(file2.read())
+                new_file = ImageUpload() 
+                new_file.File.save('converted'+'.png', file_content)
+                new_file.save()
+                # for i in os.listdir(x):
+                #     os.remove(x+i)
+                # file2=request.FILES["file"]
+                # document=ImageUpload.objects.create(File=file2)
+                # document.save()
+                # imgPath=str(BASE_DIR)+"\\"+str(document.File.url)
+                # img = Image.open(imgPath).convert("RGB")
+                # img.save(x+'newData.png')
+                # document1=ImageUpload.objects.create(File=(x+'newData.png'))
+                # document1.save()
+                # print('The image conversion from PNG TO WEBP is successful')
+                return render(request,"result.html",{"Dlink":new_file.File.url})
             except:
                 return render(request,"errorpage.html")
 
