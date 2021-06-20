@@ -1,7 +1,7 @@
 from django.shortcuts import render
 # from convertor.models import filesUpload
 from convertor.models import ImageUpload
-# from pathlib import Path
+from pathlib import Path
 import os
 #import win32com.client
 # import pythoncom
@@ -14,11 +14,10 @@ import numpy as np
 import cv2 as cv
 from matplotlib import pyplot as plt
 import sys
-from django.conf.global_settings import BASE_DIR
 
 
 
-# BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 def index(request):
