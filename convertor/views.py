@@ -6,7 +6,7 @@ import os
 #import win32com.client
 # import pythoncom
 # import comtypes
-import comtypes.client
+# import comtypes.client
 from PIL import Image
 from docx2pdf import convert
 # import datetime
