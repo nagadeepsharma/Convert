@@ -1,14 +1,14 @@
 from django.shortcuts import render
-# from convertor.models import filesUpload
+from convertor.models import filesUpload
 from convertor.models import ImageUpload
 from pathlib import Path
 import os
-#import win32com.client
-# import pythoncom
+import win32com.client
+import pythoncom
 # import comtypes
 # import comtypes.client
 from PIL import Image
-# from docx2pdf import convert
+from docx2pdf import convert
 # import datetime
 import numpy as np
 import cv2 as cv
@@ -170,149 +170,149 @@ def imageconvertor(request):
 
 
 
-# def fileconvertor(request):
-#     x= os.path.join(BASE_DIR, "media\\")
-#     if request.method=="POST":
+def fileconvertor(request):
+    x= os.path.join(BASE_DIR, "media\\")
+    if request.method=="POST":
 
-#         # Converting PPT To PDF
-#         if request.POST.get('ppt2pdf'):
-#             try:
-#                 print("Convering PPT TO PDF")
-#                 file2 = request.FILES["file"]
-#                 document = filesUpload.objects.create(file=file2)
-#                 document.save()
-#                 y=str(BASE_DIR)+"\\"+str(document.file.url)
-#                 z=os.path.splitext(y)[0]
-#                 PPT_to_PDF(y,z)
-#                 z=z+".pdf"
-#                 document1= filesUpload.objects.create(file=z)
-#                 document1.save()
-#                 return render(request,"result.html",{"Dlink":document1.file.url})
-#             except:
-#                 return render(request,"errorpage.html")
-
-
-#         #Converting PDF TO DOC
-#         if request.POST.get('pdf2doc'):
-#             try:
-#                 print("Converting PDF TO DOC")
-#                 file2 = request.FILES["file"]
-#                 document = filesUpload.objects.create(file=file2)
-#                 document.save()
-#                 y=str(BASE_DIR)+"\\"+str(document.file.url)
-#                 z=os.path.splitext(y)[0]
-#                 PDF_to_DOC(y,z)
-#                 z=str(z)+'.docx'
-#                 document1= filesUpload.objects.create(file=z)
-#                 document1.save()
-#                 print(z)
-#                 return render(request,"result.html",{"Dlink":document1.file.url})
-#             except:
-#                 return render(request,"errorpage.html")
+        # Converting PPT To PDF
+        if request.POST.get('ppt2pdf'):
+            try:
+                print("Convering PPT TO PDF")
+                file2 = request.FILES["file"]
+                document = filesUpload.objects.create(file=file2)
+                document.save()
+                y=str(BASE_DIR)+"\\"+str(document.file.url)
+                z=os.path.splitext(y)[0]
+                PPT_to_PDF(y,z)
+                z=z+".pdf"
+                document1= filesUpload.objects.create(file=z)
+                document1.save()
+                return render(request,"result.html",{"Dlink":document1.file.url})
+            except:
+                return render(request,"errorpage.html")
 
 
-#         # Conveting DOC TO PDF
-#         if request.POST.get('doc2pdf'):
-#             try:
-#                 print("Converting DOC TO PDF")
-#                 file2 = request.FILES["file"]
-#                 document = filesUpload.objects.create(file=file2)
-#                 document.save()
-#                 y=str(BASE_DIR)+"\\"+str(document.file.url)
-#                 z=x+"abc.pdf"
-#                 DOC_to_PDF(y,z)
-#                 document1= filesUpload.objects.create(file=z)
-#                 document1.save()
-#                 return render(request,"result.html",{"Dlink":document1.file.url})
-#             except:
-#                 return render(request,"errorpage.html")
+        #Converting PDF TO DOC
+        if request.POST.get('pdf2doc'):
+            try:
+                print("Converting PDF TO DOC")
+                file2 = request.FILES["file"]
+                document = filesUpload.objects.create(file=file2)
+                document.save()
+                y=str(BASE_DIR)+"\\"+str(document.file.url)
+                z=os.path.splitext(y)[0]
+                PDF_to_DOC(y,z)
+                z=str(z)+'.docx'
+                document1= filesUpload.objects.create(file=z)
+                document1.save()
+                print(z)
+                return render(request,"result.html",{"Dlink":document1.file.url})
+            except:
+                return render(request,"errorpage.html")
 
-#         # Converting XLS TO PDF
-#         if request.POST.get('xls2pdf'):
-#             print("Converting XLS TO PDF")
-#             file2=request.FILES["file"]
-#             document=filesUpload.objects.create(file=file2)
-#             document.save()
-#             infile_path=str(BASE_DIR)+"\\"+str(document.file.url)
-#             outfile_path=str(BASE_DIR)+"\\"+str("\\media\\xlscon.pdf")
-#             XLS_to_PDF(infile_path,outfile_path)
-#             document1=filesUpload.objects.create(file=outfile_path)
-#             document1.save()
-#             return render(request,"result.html",{"Dlink":document1.file.url})
+
+        # Conveting DOC TO PDF
+        if request.POST.get('doc2pdf'):
+            try:
+                print("Converting DOC TO PDF")
+                file2 = request.FILES["file"]
+                document = filesUpload.objects.create(file=file2)
+                document.save()
+                y=str(BASE_DIR)+"\\"+str(document.file.url)
+                z=x+"abc.pdf"
+                DOC_to_PDF(y,z)
+                document1= filesUpload.objects.create(file=z)
+                document1.save()
+                return render(request,"result.html",{"Dlink":document1.file.url})
+            except:
+                return render(request,"errorpage.html")
+
+        # Converting XLS TO PDF
+        if request.POST.get('xls2pdf'):
+            print("Converting XLS TO PDF")
+            file2=request.FILES["file"]
+            document=filesUpload.objects.create(file=file2)
+            document.save()
+            infile_path=str(BASE_DIR)+"\\"+str(document.file.url)
+            outfile_path=str(BASE_DIR)+"\\"+str("\\media\\xlscon.pdf")
+            XLS_to_PDF(infile_path,outfile_path)
+            document1=filesUpload.objects.create(file=outfile_path)
+            document1.save()
+            return render(request,"result.html",{"Dlink":document1.file.url})
             
 
 
-#         # Converting JPG TO PDF
-#         if request.POST.get('jpg2pdf'):
-#             try:
-#                 print("Converting JPG TO PDF")
-#                 file2=request.FILES['file']
-#                 document=filesUpload.objects.create(file=file2)
-#                 document.save()
-#                 infile_path=str(BASE_DIR)+"\\"+str(document.file.url)
-#                 outfile_path=str(BASE_DIR)+"\\media\\jpg2pdf.pdf"
-#                 JPG_to_PDF(infile_path,outfile_path)
-#                 document1=filesUpload.objects.create(file=outfile_path)
-#                 document1.save()
-#                 return render(request,"result.html",{"Dlink":document1.file.url})
-#             except:
-#                 return render(request,"errorpage.html")
+        # Converting JPG TO PDF
+        if request.POST.get('jpg2pdf'):
+            try:
+                print("Converting JPG TO PDF")
+                file2=request.FILES['file']
+                document=filesUpload.objects.create(file=file2)
+                document.save()
+                infile_path=str(BASE_DIR)+"\\"+str(document.file.url)
+                outfile_path=str(BASE_DIR)+"\\media\\jpg2pdf.pdf"
+                JPG_to_PDF(infile_path,outfile_path)
+                document1=filesUpload.objects.create(file=outfile_path)
+                document1.save()
+                return render(request,"result.html",{"Dlink":document1.file.url})
+            except:
+                return render(request,"errorpage.html")
 
 
-#         # Converting PNG TO PDF
-#         if request.POST.get('png2pdf'):
-#             try:
-#                 print("Converting PNG TO PDF")
-#                 file2=request.FILES['file']
-#                 document=filesUpload.objects.create(file=file2)
-#                 document.save()
-#                 infile_path=str(BASE_DIR)+"\\"+str(document.file.url)
-#                 outfile_path=str(BASE_DIR)+"\\media\\png2pdf.pdf"
-#                 PNG_to_PDF(infile_path,outfile_path)
-#                 document1=filesUpload.objects.create(file=outfile_path)
-#                 document1.save()
-#                 return render(request,"result.html",{"Dlink":document1.file.url})
-#             except:
-#                 return render(request,"errorpage.html")
+        # Converting PNG TO PDF
+        if request.POST.get('png2pdf'):
+            try:
+                print("Converting PNG TO PDF")
+                file2=request.FILES['file']
+                document=filesUpload.objects.create(file=file2)
+                document.save()
+                infile_path=str(BASE_DIR)+"\\"+str(document.file.url)
+                outfile_path=str(BASE_DIR)+"\\media\\png2pdf.pdf"
+                PNG_to_PDF(infile_path,outfile_path)
+                document1=filesUpload.objects.create(file=outfile_path)
+                document1.save()
+                return render(request,"result.html",{"Dlink":document1.file.url})
+            except:
+                return render(request,"errorpage.html")
 
 
-#     return render(request,"fileconvertor.html")
+    return render(request,"fileconvertor.html")
 
 
 # Function used for converting PPT TO PDF
-# def PPT_to_PDF(inputFileName, outputFileName):
-#     pythoncom.CoInitialize()
-#     powerpoint = win32com.client.Dispatch("Powerpoint.Application")
-#     deck = powerpoint.Presentations.Open(inputFileName)
-#     deck.SaveAs(outputFileName,32)
-#     deck.Close()
-#     powerpoint.Quit()
+def PPT_to_PDF(inputFileName, outputFileName):
+    pythoncom.CoInitialize()
+    powerpoint = win32com.client.Dispatch("Powerpoint.Application")
+    deck = powerpoint.Presentations.Open(inputFileName)
+    deck.SaveAs(outputFileName,32)
+    deck.Close()
+    powerpoint.Quit()
 
 
-# #Function used for converting PDF TO DOC
-# def PDF_to_DOC(infile_path, outfile_path):
-#     pythoncom.CoInitialize()
-#     word = win32com.client.Dispatch("Word.Application")
-#     wb = word.Documents.Open(infile_path, False, False, False)
-#     wb.SaveAs2(outfile_path, 16)
-#     wb.Close()
-#     word.Quit()
+#Function used for converting PDF TO DOC
+def PDF_to_DOC(infile_path, outfile_path):
+    pythoncom.CoInitialize()
+    word = win32com.client.Dispatch("Word.Application")
+    wb = word.Documents.Open(infile_path, False, False, False)
+    wb.SaveAs2(outfile_path, 16)
+    wb.Close()
+    word.Quit()
 
 
-# #Function used for converting DOC to PDF
-# def DOC_to_PDF(infile_path,outfile_path):
-#     pythoncom.CoInitialize()
-#     convert(infile_path,outfile_path)
+#Function used for converting DOC to PDF
+def DOC_to_PDF(infile_path,outfile_path):
+    pythoncom.CoInitialize()
+    convert(infile_path,outfile_path)
     
 
 
-# #Function used for converting EXCEL to PDF
-# def XLS_to_PDF(infile_path,outfile_path):
-#     pythoncom.CoInitialize()
-#     excel = win32com.client.Dispatch("Excel.Application")
-#     sheets = excel.Workbooks.Open(infile_path)
-#     work_sheets = sheets.Worksheets[0]
-#     work_sheets.ExportAsFixedFormat(0,outfile_path)
+#Function used for converting EXCEL to PDF
+def XLS_to_PDF(infile_path,outfile_path):
+    pythoncom.CoInitialize()
+    excel = win32com.client.Dispatch("Excel.Application")
+    sheets = excel.Workbooks.Open(infile_path)
+    work_sheets = sheets.Worksheets[0]
+    work_sheets.ExportAsFixedFormat(0,outfile_path)
 
 
 #Function used for converting JPG TO PDF
