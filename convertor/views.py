@@ -8,7 +8,7 @@ import os
 # import comtypes
 # import comtypes.client
 from PIL import Image
-# from docx2pdf import convert
+from docx2pdf import convert
 # import datetime
 import numpy as np
 import cv2 as cv
@@ -58,14 +58,19 @@ def imageconvertor(request):
                 file2=request.FILES["file"]
                 document=ImageUpload.objects.create(File=file2)
                 document.save()
+                print("Converting JPG TO PNG")
                 imgPath=document.File.url
-                img = Image.open(imgPath).convert("RGB")
+                print(imgPath)
+                img = Image.open(document.File).convert("RGB")
+                print("Converting JPG TO PNG")
+                print(img)
                 img.save(x+'newData.png')
                 document1=ImageUpload.objects.create(File=(x+'newData.png'))
                 document1.save()
                 print('The image conversion from JPG to PNG is successful')
                 return render(request,"result.html",{"Dlink":document1.File.url})
             except:
+                print("wrong")
                 return render(request,"errorpage.html")
 
         #Converting JPG to WEBP
