@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from convertor.models import filesUpload
+# from convertor.models import filesUpload
 from convertor.models import ImageUpload
 from pathlib import Path
 import os
