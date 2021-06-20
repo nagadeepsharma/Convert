@@ -12,12 +12,13 @@ from docx2pdf import convert
 # import datetime
 import numpy as np
 import cv2 as cv
-# from matplotlib import pyplot as plt
+from matplotlib import pyplot as plt
 import sys
+from django.conf.global_settings import BASE_DIR
 
 
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+# BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 def index(request):
