@@ -1,7 +1,9 @@
+from django.core.files.base import File
 from django.shortcuts import render
 from convertor.models import filesUpload
 from convertor.models import ImageUpload
 from pathlib import Path
+from django.core.files import File as ff
 import os
 import win32com.client
 import pythoncom
@@ -14,7 +16,9 @@ import numpy as np
 import cv2 as cv
 from matplotlib import pyplot as plt
 import sys
-
+from django.conf import settings
+from django.core.files.temp import NamedTemporaryFile
+import random
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,6 +41,7 @@ def backgroundremover(request):
             document=ImageUpload.objects.create(File=file2)
             document.save()
             infile_path=str(BASE_DIR)+"\\"+str(document.File.url)
+            
             outfile_path=str(BASE_DIR)+"\\media\\images\\abc.png"
             blur_remove(infile_path,outfile_path)
             document1=ImageUpload.objects.create(File=outfile_path)
@@ -48,25 +53,23 @@ def backgroundremover(request):
 
 
 def imageconvertor(request):
-    x=str(BASE_DIR)+"\\media\\images\\"
+    # x=str(BASE_DIR)+"\\media\\images\\"
     if request.method=="POST":
         #Converting JPG TO PNG
 
         if request.POST.get("jpg2png"):
             try:
-                print("Converting JPG TO PNG")
-                for i in os.listdir(x):
-                    os.remove(x+i)
                 file2=request.FILES["file"]
                 document=ImageUpload.objects.create(File=file2)
                 document.save()
-                imgPath=str(BASE_DIR)+"\\"+str(document.File.url)
+                imgPath=document.File
                 img = Image.open(imgPath).convert("RGB")
-                img.save(x+'newData.png')
-                document1=ImageUpload.objects.create(File=(x+'newData.png'))
-                document1.save()
+                num=random.randint(1,100000)
+                img.save(settings.MEDIA_ROOT+'/images/newdataa'+str(num)+'.png')
                 print('The image conversion from JPG to PNG is successful')
-                return render(request,"result.html",{"Dlink":document1.File.url})
+                document.name='/media/images/newdataa'+str(num)+'.png'
+                document.save()
+                return render(request,"result.html",{"Dlink":document.name})
             except:
                 return render(request,"errorpage.html")
 
